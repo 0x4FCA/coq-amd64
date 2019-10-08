@@ -14,8 +14,9 @@ Require Import Coq.Logic.FunctionalExtensionality.
 (*---------------------------------------------------------------------------
     Option monad
   ---------------------------------------------------------------------------*)
+Definition option_retn {T : Type} (x : T) : option T := Some x.
 Instance optionMonadOps : MonadOps option :=
-{ retn := Some
+{ retn := @option_retn
 ; bind := fun X Y (c: option X) f => if c is Some y then f y else None }.
 
 Instance optionMonad : Monad option.
